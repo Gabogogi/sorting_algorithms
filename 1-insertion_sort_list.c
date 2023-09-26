@@ -1,53 +1,52 @@
 #include "sort.h"
 
 /**
-  * insertion_sort_list - Sorts an doubly linked list
-  * of integers in ascending order using
-  * the Insertion sort algorithm.
-  * @list: The doubly linked list to sort
-  *
-  * Return: Nothing!
-  */
+ * insertion_sort_list - Sorts a doubly linked list of integers
+ * in ascending order using the Insertion sort algorithm.
+ * @list: A pointer to the doubly linked list to sort
+ *
+ * Return: Nothing
+ */
 void insertion_sort_list(listint_t **list)
 {
-	bool flag = false;
-	listint_t *tmp = NULL, *aux = NULL;
+	bool swapped = false;
+	listint_t *current = NULL, *temp = NULL;
 
 	if (!list || !(*list) || !(*list)->next)
 		return;
 
-	tmp = *list;
-	while (tmp->next)
+	current = *list;
+	while (current->next)
 	{
-		if (tmp->n > tmp->next->n)
+		if (current->n > current->next->n)
 		{
-			tmp->next->prev = tmp->prev;
-			if (tmp->next->prev)
-				tmp->prev->next = tmp->next;
+			current->next->prev = current->prev;
+			if (current->next->prev)
+				current->prev->next = current->next;
 			else
-				*list = tmp->next;
+				*list = current->next;
 
-			tmp->prev = tmp->next;
-			tmp->next = tmp->next->next;
-			tmp->prev->next = tmp;
-			if (tmp->next)
-				tmp->next->prev = tmp;
+			current->prev = current->next;
+			current->next = current->next->next;
+			current->prev->next = current;
+			if (current->next)
+				current->next->prev = current;
 
-			tmp = tmp->prev;
+			current = current->prev;
 			print_list(*list);
 
-			if (tmp->prev && tmp->prev->n > tmp->n)
+			if (current->prev && current->prev->n > current->n)
 			{
-				if (!flag)
-					aux = tmp->next;
-				flag = true;
-				tmp = tmp->prev;
+				if (!swapped)
+					temp = current->next;
+				swapped = true;
+				current = current->prev;
 				continue;
 			}
 		}
-		if (!flag)
-			tmp = tmp->next;
+		if (!swapped)
+			current = current->next;
 		else
-			tmp = aux, flag = false;
+			current = temp, swapped = false;
 	}
 }
