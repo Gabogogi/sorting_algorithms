@@ -1,10 +1,10 @@
 #include "sort.h"
 
 /**
- * custom_quick_sort - Sorts an array of integers in ascending
- * order using the Quick sort algorithm.
+ * quick_sort - Sorts an array of integers in ascending order using
+ * the Quick sort algorithm.
  * @array: The array of integers to sort
- * @size: The size of the array of integers
+ * @size: The size of the array
  *
  * Return: Nothing
  */
@@ -13,38 +13,38 @@ void quick_sort(int *array, size_t size)
 	if (!array || size < 2)
 		return;
 
-	custom_quick_sort_recursive(array, 0, size - 1, size);
+	quick_sort_recursive(array, 0, size - 1, size);
 }
 
 /**
- * custom_quick_sort_recursive - Recursively sorts an array
- * using the Lomuto partition scheme.
+ * quick_sort_recursive - Recursively sorts an array using the Lomuto
+ * partition scheme.
  * @array: The array of integers to sort
- * @low: The lower bound of the subarray to sort
- * @high: The higher bound of the subarray to sort
- * @size: The size of the array of integers
+ * @low: The lower index of the subarray to sort
+ * @high: The higher index of the subarray to sort
+ * @size: The size of the array
  *
  * Return: Nothing
  */
 void quick_sort_recursive(int *array, int low, int high, size_t size)
 {
-	int partition_index = 0;
+	int pivot_index = 0;
 
 	if (low < high)
 	{
-		partition_index = custom_lomuto_partition(array, low, high, size);
-		custom_quick_sort_recursive(array, low, partition_index - 1, size);
-		custom_quick_sort_recursive(array, partition_index + 1, high, size);
+		pivot_index = lomuto_partition(array, low, high, size);
+		quick_sort_recursive(array, low, pivot_index - 1, size);
+		quick_sort_recursive(array, pivot_index + 1, high, size);
 	}
 }
 
 /**
- * custom_lomuto_partition - Partitions an array using the Lomuto
- * partition scheme and returns the partition index.
+ * lomuto_partition - Partitions an array using the Lomuto partition scheme
+ * and returns the partition index.
  * @array: The array of integers to partition
- * @low: The lower bound of the subarray to partition
- * @high: The higher bound of the subarray to partition
- * @size: The size of the array of integers
+ * @low: The lower index of the subarray to partition
+ * @high: The higher index of the subarray to partition
+ * @size: The size of the array
  *
  * Return: The partition index
  */
