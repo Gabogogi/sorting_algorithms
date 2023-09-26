@@ -8,7 +8,7 @@
   *
   * Return: Void
   */
-void custom_bubble_sort(int *arr, size_t length)
+void bubble_sort(int *arr, size_t length)
 {
     int temp = 0, max_index = 0, did_swap = 1;
 
