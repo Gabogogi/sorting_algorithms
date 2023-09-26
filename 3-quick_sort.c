@@ -8,7 +8,7 @@
  *
  * Return: Nothing
  */
-void custom_quick_sort(int *array, size_t size)
+void quick_sort(int *array, size_t size)
 {
 	if (!array || size < 2)
 		return;
@@ -26,7 +26,7 @@ void custom_quick_sort(int *array, size_t size)
  *
  * Return: Nothing
  */
-void custom_quick_sort_recursive(int *array, int low, int high, size_t size)
+void quick_sort_recursive(int *array, int low, int high, size_t size)
 {
 	int partition_index = 0;
 
@@ -48,7 +48,7 @@ void custom_quick_sort_recursive(int *array, int low, int high, size_t size)
  *
  * Return: The partition index
  */
-int custom_lomuto_partition(int *array, int low, int high, size_t size)
+int lomuto_partition(int *array, int low, int high, size_t size)
 {
 	int i = 0, j = 0, pivot = 0, temp = 0;
 
@@ -79,4 +79,3 @@ int custom_lomuto_partition(int *array, int low, int high, size_t size)
 
 	return (i);
 }
-
